@@ -35,10 +35,13 @@ public class UserEntity {
     private String userInfo;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private List<UserRoleEntity>  userRole = new ArrayList<>();
 
     // TODO: Think about FavouriteEntity implementation
+    // mappedBy = "owner"
     @OneToMany
+    @JoinColumn(name = "user_id")
     private List<HikeEntity> createdHikes;
 
     public UserEntity() {

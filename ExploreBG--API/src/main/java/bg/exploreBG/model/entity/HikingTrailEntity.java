@@ -50,6 +50,7 @@ public class HikingTrailEntity {
     private SuitableForEnum activity;
 
     @OneToMany
+    @JoinColumn(name = "hiking_trail_id")
     private List<CommentEntity> comments = new ArrayList<>();
 
     @Column(name = "elevation_gained")

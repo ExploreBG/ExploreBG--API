@@ -16,17 +16,17 @@ public class HikeEntity {
     @Column(name = "hike_date", nullable = false)
     private LocalDate hikeDate;
 
-    @Column(name = "hiking_trail")
-    @OneToOne
+    @ManyToOne
     private HikingTrailEntity hikingTrail;
 
     @Column(name = "hike_info")
     private String hikeInfo;
 
-    @OneToOne
-    private UserEntity owner;
+//    @ManyToOne
+//    private UserEntity owner;
 
     @OneToMany
+    @JoinColumn(name = "hikes_id")
     private List<CommentEntity> comments;
 
     private Boolean archived;
@@ -66,13 +66,13 @@ public class HikeEntity {
         this.hikeInfo = hikeInfo;
     }
 
-    public UserEntity getOwner() {
-        return owner;
-    }
-
-    public void setOwner(UserEntity owner) {
-        this.owner = owner;
-    }
+//    public UserEntity getOwner() {
+//        return owner;
+//    }
+//
+//    public void setOwner(UserEntity owner) {
+//        this.owner = owner;
+//    }
 
     public List<CommentEntity> getComments() {
         return comments;
