@@ -35,13 +35,11 @@ public class UserEntity {
     private String userInfo;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private List<UserRoleEntity>  userRole = new ArrayList<>();
+    private List<RoleEntity>  roles = new ArrayList<>();
 
     // TODO: Think about FavouriteEntity implementation
-    // mappedBy = "owner"
-    @OneToMany
-    @JoinColumn(name = "user_id")
+
+    @OneToMany(mappedBy = "owner")
     private List<HikeEntity> createdHikes;
 
     public UserEntity() {
@@ -111,12 +109,12 @@ public class UserEntity {
         this.userInfo = userInfo;
     }
 
-    public List<UserRoleEntity> getUserRole() {
-        return userRole;
+    public List<RoleEntity> getUserRole() {
+        return roles;
     }
 
-    public void setUserRole(List<UserRoleEntity> userRole) {
-        this.userRole = userRole;
+    public void setUserRole(List<RoleEntity> roles) {
+        this.roles = roles;
     }
 
     public List<HikeEntity> getCreatedHikes() {

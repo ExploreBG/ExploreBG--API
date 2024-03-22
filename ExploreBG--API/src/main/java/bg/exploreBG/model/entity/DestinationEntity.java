@@ -24,6 +24,7 @@ public class DestinationEntity {
     @Column(name = "next_to")
     private String nextTo;
 
+    @Enumerated(EnumType.STRING)
     private DestinationTypeEnum type;
 
     public DestinationEntity() {

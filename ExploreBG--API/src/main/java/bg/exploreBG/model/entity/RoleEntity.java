@@ -4,18 +4,18 @@ import bg.exploreBG.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_roles")
-public class UserRoleEntity {
+@Table(name = "roles")
+public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_role", nullable = false)
+    @Column(name = "roles", nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRoleEnum userRole;
+    private UserRoleEnum role;
 
-    public UserRoleEntity() {
+    public RoleEntity() {
     }
 
     public Long getId() {
@@ -27,10 +27,10 @@ public class UserRoleEntity {
     }
 
     public UserRoleEnum getUserRole() {
-        return userRole;
+        return role;
     }
 
-    public void setUserRole(UserRoleEnum userRole) {
-        this.userRole = userRole;
+    public void setUserRole(UserRoleEnum role) {
+        this.role = role;
     }
 }
