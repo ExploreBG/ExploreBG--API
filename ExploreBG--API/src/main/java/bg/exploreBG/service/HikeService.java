@@ -1,6 +1,6 @@
 package bg.exploreBG.service;
 
-import bg.exploreBG.model.dto.HikeDto;
+import bg.exploreBG.model.dto.HikeBasicDto;
 import bg.exploreBG.model.entity.HikeEntity;
 import bg.exploreBG.model.mapper.HikeMapper;
 import bg.exploreBG.repository.HikeRepository;
@@ -23,7 +23,7 @@ public class HikeService {
         this.hikeMapper = hikeMapper;
     }
 
-    public List<HikeDto> getRandomNumOfHikes(int limit) {
+    public List<HikeBasicDto> getRandomNumOfHikes(int limit) {
         long countOfAvailableHikes = this.hikeRepository.count();
 
         Set<Long> randomIds = getRandomIds(limit, countOfAvailableHikes);
@@ -33,7 +33,7 @@ public class HikeService {
 
         return hikeEntities
                 .stream()
-                .map(this.hikeMapper::hikeEntityToHikeDto)
+                .map(this.hikeMapper::hikeEntityToHikeBasicDto)
                 .toList();
     }
 
