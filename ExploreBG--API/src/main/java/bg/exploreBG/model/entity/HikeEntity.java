@@ -28,7 +28,7 @@ public class HikeEntity {
     @JoinColumn(name = "user_id")
     private UserEntity owner;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "hike_id")
     private List<CommentEntity> comments;
 

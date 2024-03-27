@@ -1,16 +1,15 @@
 package bg.exploreBG.model.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
+@EntityListeners(AuditingEntityListener.class)
 public class CommentEntity {
 
     @Id
@@ -20,17 +19,23 @@ public class CommentEntity {
     private String message;
 
     @CreatedDate
-    private Instant messageCreated;
+    @Column(name = "creation_date",
+            nullable = false,
+            updatable = false)
+    private LocalDateTime creationDate;
 
-//    @CreatedBy
-//    private UserEntity userEntity;
+//  TODO: Review when spring security is implemented - @CreatedBy
+    @OneToOne(optional = false)
+    private UserEntity userEntity;
 
-      // TODO: Need to implement spring security!!!
+      // TODO: Review when spring security is implemented - @CreatedBy
 //    @LastModifiedBy
 //    private UserEntity userEntity;
 
-//    @LastModifiedDate
-//    private Instant messageModified;
+    @LastModifiedDate
+    @Column(name="modification_date",
+            insertable = false)
+    private LocalDateTime modificationDate;
     public CommentEntity() {
     }
 
@@ -50,11 +55,27 @@ public class CommentEntity {
         this.message = message;
     }
 
-    public Instant getMessageCreated() {
-        return messageCreated;
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
-    public void setMessageCreated(Instant messageCreated) {
-        this.messageCreated = messageCreated;
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
+    public LocalDateTime getModificationDate() {
+        return modificationDate;
+    }
+
+    public void setModificationDate(LocalDateTime modificationDate) {
+        this.modificationDate = modificationDate;
     }
 }

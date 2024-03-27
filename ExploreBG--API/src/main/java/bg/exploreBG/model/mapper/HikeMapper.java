@@ -1,6 +1,7 @@
 package bg.exploreBG.model.mapper;
 
 import bg.exploreBG.model.dto.HikeBasicDto;
+import bg.exploreBG.model.dto.HikeDetailsDto;
 import bg.exploreBG.model.entity.HikeEntity;
 import org.mapstruct.Mapper;
 
@@ -8,4 +9,6 @@ import org.mapstruct.Mapper;
 public interface HikeMapper {
 
     HikeBasicDto hikeEntityToHikeBasicDto(HikeEntity hikeEntity);
+
+    HikeDetailsDto hikeEntityToHikeDetailsDto(HikeEntity hikeEntity);
 }
